@@ -38,7 +38,7 @@ DevTools, not guessed:
 
 | Purpose | Method | Path | Notes |
 |---|---|---|---|
-| List meters | GET | `/portal/search?q=&page=N` | `q` also matches by serial number; 20 per page |
+| List meters | GET | `/portal/meters/search?q=&page=N` | `q` also matches by serial number; 20 per page |
 | Meter location | GET | `/portal/meters/{meterId}/geo` | lat/lng returned as **strings** |
 | Meter consumption | GET | `/portal/meters/{meterId}/energy` | fixed ~1 week window, no pagination or date params observed; all values (kwh/kvah/voltR) returned as **strings** |
 | List transformers | GET | `/portal/dts?page=N` | 20 per page |
