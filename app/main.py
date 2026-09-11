@@ -11,7 +11,7 @@ from typing import Optional
 
 from fastapi import FastAPI, HTTPException, Query
 
-from app.client import UrjaPortalClient
+from app.client import UrjaPortalClient, PortalAuthError
 from app.models import (
     MeterSummary,
     MeterListResponse,
@@ -97,10 +97,10 @@ def get_meter(meter_id: str):
     client = get_client()
     try:
         export = client.get_all_meters_export()
-    except NotImplementedError:
+    except PortalAuthError as e:
         raise HTTPException(
             status_code=501,
-            detail="Bulk export endpoint not yet confirmed - see client.py TODO",
+            detail=f"Bulk export endpoint not yet confirmed - see client.py TODO ({e})",
         )
 
     match = next((m for m in export if m["meterId"] == meter_id), None)
